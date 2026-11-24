@@ -1,0 +1,31 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[backend=biber, style=ieee]{biblatex}
+
+\addbibresource{references.bib}
+
+\begin{document}
+
+% --- First Page ---
+\begin{titlepage}
+    \centering
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% --- Main part ---
+\input{chapters/01-intro}
+\input{chapters/02-methodology}
+\input{chapters/03-rslt-dis}
+\input{chapters/04-con-ftw}
+
+% --- References ---
+\newpage
+\printbibliography[title={References}]
+
+\end{document}

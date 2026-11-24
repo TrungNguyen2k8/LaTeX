@@ -1,0 +1,26 @@
+{
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.bcf",
+        "*.blg",
+        "*.fdb_latexmk",
+        "*.fls",
+        "*.idx",
+        "*.ind",
+        "*.ist",
+        "*.lof",
+        "*.log",
+        "*.lot",
+        "*.nav",
+        "*.out",
+        "*.run.xml",
+        "*.snm",
+        "*.synctex(busy)",
+        "*.synctex.gz",
+        "*.toc",
+        "*.vrb",
+        "*.xdv"
+    ]
+}
