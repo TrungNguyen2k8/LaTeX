@@ -1,5 +1,6 @@
 {
     "latex-workshop.latex.autoClean.run": "onBuilt",
+    "git.autorefresh": false,
     "latex-workshop.latex.clean.fileTypes": [
         "*.aux",
         "*.bbl",
