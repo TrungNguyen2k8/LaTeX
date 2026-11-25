@@ -1,1 +1,55 @@
 \chapter{Methodology}
+\section{Energy Harvesting and Storage System}
+\subsection{Footstep Energy Harvesting Path}
+The PolyK PVDF piezoelectric film (20 $\times$ 67~mm, 110~$\mu$m thick) inside the sole connects to the PVDF Rectifier and Input Protection circuit, which then feeds into e-peas AEM30940 PMIC\@. When walking bends the sole, the PVDF film turns that movement into small alternating current (AC) pulses. The rectifier converts AC into direct current (DC), and the input protection blocks high voltage spikes so the chip does not burn out. Finally, the AEM30940 boosts this weak power into a steady level ready to charge the battery.
+
+\subsection{Footstep Energy Storage and Power Management}
+The power generated from footstep harvesters passes through the rectifier and PMIC to charge the 3.7~V Li-Po battery. The power-path management circuit safely controls battery charging and prevents overcharging while delivering steady voltage to the microcontroller, sensors, and lighting system.
+
+The 3.7~V Li-Po battery connects to the TPS63031 DC-DC Voltage Regulator, which powers the MDBT42Q-512KV2 BLE microcontroller, front LED light, RGB LED strip, and SOS system. Because the battery voltage drops naturally from 4.2~V (full) to 3.0~V (empty) during use, the TPS63031 automatically steps the voltage up or down to keep a constant 3.3~V output. This keeps the Bluetooth module, sensors, and lights running smoothly until the battery runs out.
+
+\section{SOS System Architecture and Workflow}
+The SOS system operates in four steps, connecting the shoe's physical button to a smartphone app via Bluetooth Low Energy (BLE):
+\begin{itemize}[label=--]
+    \item Button Trigger \& False-Alarm Prevention (Button  Microcontroller): The push-button on the shoe connects to the MDBT42Q-512KV2 module. To let one button control both lights and emergencies without accidental triggers while walking, the code uses a press-and-hold timer: short presses switch light modes, while holding the button for 2--3 seconds activates the SOS alert.
+    \item Signal Processing \& Wireless Transmission (MDBT42Q-512KV2  Smartphone): Powered by the main battery, the nRF52832 chip inside the MDBT42Q-512KV2 module processes the long press and sends an emergency signal to the phone over 2.4~GHz BLE\@. Letting the phone handle GPS and Internet tasks keeps the shoe circuit small and saves battery.
+    \item AI-Controlled GPS Tracking \& Sending Alerts (BLE → AI Feature → GPS → Contacts): On the smartphone, the AI feature controls the built-in GPS slowing down GPS updates when the user is still to save battery and removing bad GPS signals. When the app receives an SOS signal via BLE, the AI immediately turns on high-accuracy GPS, finds the user's live location, and sends an emergency message to saved contacts over the Internet while the shoe flashes red SOS lights.
+    \item System Testing: the SOS workflow was tested to make sure the whole process works smoothly in daily use. Holding the button for 2--3 seconds successfully prevents accidental alarms while the user is running or jumping. Once the alert is triggered, the BLE signal reliably reaches the smartphone at normal walking distances. At the same time, the AI-controlled GPS accurately tracks the user's live location while saving battery, allowing the app to send out the emergency message quickly.
+\end{itemize}
+
+\section{Lighting and Signaling System Methodology}
+The lighting system was made in four steps: connecting the wires, waterproofing the parts on the shoe, coding the light modes, and testing how it works.
+
+\subsection{Circuit Assembly and Power Connections}
+Front LED Light: Two white SMD 5730 LEDs connect to the 3.3~V power line through a 15~$\Omega$ protective resistor. A 2N2222 transistor acts as an electronic switch, with a 1~k$\Omega$ resistor protecting the Seeed Studio XIAO ESP32-C3 pin (keeping pin current under 3~mA).
+
+RGB LED Strip: The 10-LED WS2812B strip connects directly to the 3.7~V (4000~mAh) LiPo battery so it gets enough power without overloading the 3.3~V regulator. A 330~$\Omega$ resistor on the data wire keeps the signal clean and protects the first LED\@.
+
+Control Button: The IP67 waterproof button connects between a microcontroller input pin and ground (GND), using the chip's built-in pull-up resistor (INPUT\_PULLUP) to save space and parts.
+
+\subsection{Waterproof Mounting}
+The front LEDs sit behind a clear plastic (polycarbonate) cover at the toe cap and are sealed with waterproof silicone glue.
+
+The silicone-covered WS2812B strip is glued into a shallow groove along the outer side of the midsole using flexible shoe glue so it bends with the foot without peeling off.
+
+The 12~mm control button is mounted through the outer shoe collar with its rubber O-ring pressed tight against the fabric.
+
+All wires run through hidden channels into the arch box, with every solder joint covered in waterproof heat-shrink tubing and sealed at the box openings.
+
+\subsection{Software Control and Lighting Modes}
+Normal Operation (Short Press \-- under 1.5~s): Each short press moves through four battery-saving modes in order:
+\begin{itemize}[label=--]
+    \item Mode 0 (Off / Standby): All lights are off; the microcontroller enters low-power sleep mode to save energy.
+    \item Mode 1 (Front Light): The front white LEDs turn on at full brightness ($\sim$60~mA) to light the path ahead.
+    \item Mode 2 (360-Degree Visibility): The front LEDs stay on while the WS2812B strip glows softly in cyan/white (30\% brightness) so people can see the wearer from every angle.
+    \item Mode 3 (Night-Running Flash): The lights flash twice per second (2~Hz) to warn nearby vehicles while saving battery life.
+\end{itemize}
+
+Emergency SOS Mode (Long Press or SOS Alert): Holding the button for 3 seconds or longer, or receiving an automatic signal from the SOS module \-- immediately overrides all normal modes. The front LEDs flash quickly while the WS2812B strip flashes a bright red Morse code SOS signal at full power, synced with the wireless phone alert.
+
+\subsection{Testing and Validation}
+\begin{itemize}[label=--]
+    \item Battery Life Test: A multimeter measured current use across all modes (from $\sim$60~mA in Mode 1 to $\sim$140~mA in Mode 2), confirming 24--30 hours of continuous runtime on the 4000~mAh battery.
+    \item Heat Check: The lights ran continuously for 2 hours inside the closed box; the resistor, transistor, and LED strip all stayed below 40~°C, keeping the LiPo battery safe from overheating.
+    \item Waterproof Test: The shoe was sprayed with simulated rain and stepped into shallow puddles to confirm zero water leaks around the front lens, side LED strip, and collar button.
+\end{itemize}
