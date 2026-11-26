@@ -2,7 +2,7 @@
 The updated design brings together footstep energy harvesting, phone-based location tracking and emergency lighting. The reported tests give initial results for current draw, SOS operation, heat and water exposure. The following sections discuss what these results mean in use, while keeping calculated estimates and intended functions separate from measured performance.
 
 \section{Energy Use and Operating Time}
-The main 3.7~V, 4000~mAh battery has a nominal capacity of 14.8~Wh. It supplies the on-shoe electronics and stores energy collected from footsteps. The current readings show that the choice of lighting mode has a clear effect on demand, as summarised in Table~\ref{tab:current_draw_steady_lighting}.
+The main 3.7~V, 4000~mAh battery has a nominal capacity of 14.8~Wh. It supplies the on-shoe electronics and stores energy collected from footsteps~\cite{ahmed2024smart}. The current readings show that the choice of lighting mode has a clear effect on demand, as summarised in Table~\ref{tab:current_draw_steady_lighting}.
 
 \begin{table}[H]
     \centering
@@ -25,7 +25,7 @@ The main 3.7~V, 4000~mAh battery has a nominal capacity of 14.8~Wh. It supplies 
 
 Adding the strip increases the reported current by about 80~mA, making Mode 2 draw roughly 2.3 times as much as Mode 1. The extra light around the shoe therefore comes with a noticeable increase in battery demand. Current readings for standby, flashing and SOS are not given, so their operating times cannot be compared in the same way.
 
-The methodology reports 24--30 hours of continuous operation. If the Mode 2 reading represents the total battery current, a simple capacity estimate gives:
+If the Mode 2 reading represents the total battery current, a simple capacity estimate gives:
 \begin{equation}
     t = \frac{4000 \text{ mAh}}{140 \text{ mA}} \approx 28.6 \text{ h}
     \label{eq:battery_time}
@@ -33,7 +33,7 @@ The methodology reports 24--30 hours of continuous operation. If the Mode 2 read
 
 This is consistent with the scale of the reported range. It is an ideal estimate, however, and assumes the full rated capacity is available at a constant current. Circuit losses, the usable discharge range and the measurement point still need to be considered. The 24--30-hour figure should therefore not be treated as a verified duration for every mode.
 
-Footstep harvesting could extend operating time, but the source does not state how much energy actually reaches the battery. The PVDF output voltage alone cannot answer this. Over a given period, the relevant balance is:
+Footstep harvesting could extend operating time, but the source does not state how much energy actually reaches the battery~\cite{iec62660_2018}. The PVDF output voltage alone cannot answer this. Over a given period, the relevant balance is:
 \begin{equation}
     \Delta E = H - L
     \label{eq:energy_balance}
@@ -56,7 +56,7 @@ The updated app changes how location tracking is managed. Instead of using the s
     \toprule
     \textbf{Situation} & \textbf{App response} & \textbf{Purpose} \\
     \midrule
-    User is still & Reduce GPS update frequency. & Limit unnecessary phone battery use. \\
+    User is still & Reduce GPS update frequency. & Limit unnecessary phone battery use~\cite{android_location_battery}. \\
     \addlinespace
     Walking or running & Increase updates and filter implausible location jumps. & Keep the displayed route more useful during movement. \\
     \addlinespace
@@ -65,7 +65,7 @@ The updated app changes how location tracking is managed. Instead of using the s
     \end{tabularx}
 \end{table}
 
-Filtering is intended to reduce sudden GPS jumps in crowded urban areas or partly indoors. The source reports accurate live tracking and reduced battery use during the SOS workflow test, but gives no location-error measurements or comparison with ordinary GPS tracking. These are qualitative findings: the amount of improvement, and the contribution of the AI feature itself, remain unmeasured. Any saving from changing GPS activity concerns the phone battery, rather than directly proving a longer shoe runtime.
+Filtering is intended to reduce sudden GPS jumps in crowded urban areas or partly indoors~\cite{weng2023gnss}. The source reports accurate live tracking and reduced battery use during the SOS workflow test, but gives no location-error measurements or comparison with ordinary GPS tracking. These are qualitative findings: the amount of improvement, and the contribution of the AI feature itself, remain unmeasured. Any saving from changing GPS activity concerns the phone battery, rather than directly proving a longer shoe runtime.
 
 The reported SOS test also found that holding the button for 2--3 seconds prevented accidental alarms during running or jumping, and that BLE reliably reached the phone at normal walking distances. The app was reported to send the emergency message quickly. These observations support the basic workflow under the described conditions, although no trial count, exact distance or delivery time is provided.
 
@@ -121,7 +121,7 @@ The physical tests focused on heat build-up and water entering around the expose
     \end{tabularx}
 \end{table}
 
-The heat test provides an initial check of the enclosed lighting components, while the water test supports the sealing at the inspected points under the stated conditions. Battery temperature, longer operating periods and repeated bending were not separately assessed. These observations therefore do not establish long-term durability or an IP67 rating for the complete shoe.
+The heat test provides an initial check of the enclosed lighting components, while the water test supports the sealing at the inspected points under the stated conditions. Battery temperature, longer operating periods and repeated bending were not separately assessed. These observations therefore do not establish long-term durability or an IP67 rating for the complete shoe~\cite{iec60529}.
 
 No visibility-distance measurements are available. Carbon fibre and titanium are also mentioned in the design overview, but no weight, strength or comfort results are supplied, so their practical benefits still need to be checked.
 

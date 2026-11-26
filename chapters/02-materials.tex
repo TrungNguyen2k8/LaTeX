@@ -34,18 +34,16 @@ A rechargeable Li-Po battery stores energy collected from footstep harvesters to
 \end{table}
 
 \section{SOS system}
-The EShoeS will trigger an SOS system when the user presses a button designed into the footwear. The button activating an emergency signal is designed to be an all in one system with the light-activation button, which is familiar with the power activation button on smartphones. The proposed design uses a press-and-hold mechanism, and users have to hold the button for approximately 2--3 seconds before triggering an emergency signal.
+The EShoeS will trigger an SOS system when the user presses a button designed into the footwear. The proposed design uses a press-and-hold mechanism, and users have to hold the button for approximately 2--3 seconds before triggering an emergency signal.
 
-To send the signals from the shoes to the user's smartphone (see Figure~\ref{fig:Smartphone_App}), Bluetooth Low Energy (BLE) is selected as the primary communication technology. BLE operates in the 2.4~GHz ISM band~\cite{bluetooth_sig_2023} and is known for its ultra-low power consumption~\cite{dementyev2013power}. Compared with direct cellular connectivity, it also offers a more compact design and is more affordable. These characteristics make it suitable for a wearable product with limited battery capacity. For this system, the MDBT42Q-512KV2 is chosen as the BLE module~\cite{raytac_mdbt42q}. It already combines the BLE microcontroller and a built-in chip antenna in one small unit to process and send the SOS signal to the smartphone. Inside this module, the nRF52832 microcontroller uses a 64~MHz Cortex-M4F core with a floating-point unit, offering enough computing performance and DSP capabilities~\cite{nordic_nrf52832}. 
+To send the signals from the shoes to the user's smartphone (see Figure~\ref{fig:Smartphone_App}), Bluetooth Low Energy (BLE) is selected as the primary communication technology. BLE operates in the 2.4~GHz ISM band~\cite{bluetooth_sig_2023} and is known for its ultra-low power consumption~\cite{dementyev2013power}. For this system, the MDBT42Q-512KV2 is chosen as the BLE module~\cite{raytac_mdbt42q}. It already combines the BLE microcontroller and a built-in chip antenna in one small unit to process and send the SOS signal to the smartphone. Inside this module, the nRF52832 microcontroller uses a 64~MHz Cortex-M4F core with a floating-point unit, offering enough computing performance and DSP capabilities~\cite{nordic_nrf52832}. 
 
 The dedicated smartphone application acts as the receiver for emergency signals transmitted via BLE\@. Upon receiving an alert from the shoes, the app accesses the smartphone's built-in Global Navigation Satellite System (GNSS/GPS) to determine the user's exact geographical location and immediately dispatches emergency notifications containing these coordinates to pre-registered contacts over an active internet connection.
-
-The internal rechargeable battery serves as the central power source for all on-shoe electronics, supplying energy to the SOS control module, BLE microcontroller, front headlamp, and RGB LED strip. Additionally, energy harvested from footsteps is directed to this main battery, ensuring continuous operation even when external power sources are unavailable.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\textwidth]{figures/Smartphone_app.png}
-    \caption{AI-Controlled GPS and Position Tracking}\label{fig:Smartphone_App}
+    \caption{AI-Controlled GPS and Position Tracking App}\label{fig:Smartphone_App}
 \end{figure}
 
 To make location tracking more accurate and save phone battery without adding extra parts to the shoe, the smartphone app uses a simple AI control feature:
@@ -80,11 +78,3 @@ Giving user visibility in dark environments as well as immediate visual alerts d
         \bottomrule
     \end{tabularx}
 \end{table}
-
-Front LED Light has two bright white LEDs (SMD 5730, 0.5~W total) sitting inside a clear waterproof cover at the toe cap to light the path ahead. The microcontroller turns them on and off through a 2N2222 transistor switch and a 15 $\Omega$ protective resistor (3.3~V, $\sim$60~mA), keeping the beam bright without overloading the chip or overheating.
-
-RGB LED Strip is a flexible, waterproof LED strip (WS2812B, IP67, 10 LEDs, 165 $\times$ 10 $\times$ 3~mm) running along the outer edge of the midsole. Powered by the 3.7~V battery and controlled by one signal wire, it makes the shoe visible from all angles at night and flashes a bright red Morse code SOS warning in emergencies.
-
-A waterproof push-button (IP67, 12~mm diameter) is placed on the outer side of the shoe collar for easy reach. Short presses switch between lighting modes (off, front light, ambient RGB, and night-running strobe), while holding the button for 3 seconds triggers the SOS alert.
-
-A tiny, low-power Seeed Studio XIAO ESP32-C3 (21 $\times$ 17.5 $\times$ 3.5~mm, 3.3~V, $\sim$43~$\mu$A sleep current), called microcontroller, sits inside the sealed compartment next to the 4000 mAh battery. It reads button presses, adjusts LED brightness ($\sim$24--30 hours of continuous battery life), and syncs the flashing red SOS lights with the wireless emergency alert.
