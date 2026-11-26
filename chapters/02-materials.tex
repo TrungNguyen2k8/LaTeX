@@ -33,7 +33,7 @@ A rechargeable Li-Po battery stores energy collected from footstep harvesters to
     \end{tabularx}
 \end{table}
 
-\section{SOS system}
+\section{SOS System}
 The EShoeS will trigger an SOS system when the user presses a button designed into the footwear. The proposed design uses a press-and-hold mechanism, and users have to hold the button for approximately 2--3 seconds before triggering an emergency signal.
 
 To send the signals from the shoes to the user's smartphone (see Figure~\ref{fig:Smartphone_App}), Bluetooth Low Energy (BLE) is selected as the primary communication technology. BLE operates in the 2.4~GHz ISM band~\cite{bluetooth_sig_2023} and is known for its ultra-low power consumption~\cite{dementyev2013power}. For this system, the MDBT42Q-512KV2 is chosen as the BLE module~\cite{raytac_mdbt42q}. It already combines the BLE microcontroller and a built-in chip antenna in one small unit to process and send the SOS signal to the smartphone. Inside this module, the nRF52832 microcontroller uses a 64~MHz Cortex-M4F core with a floating-point unit, offering enough computing performance and DSP capabilities~\cite{nordic_nrf52832}. 
@@ -48,8 +48,8 @@ The dedicated smartphone application acts as the receiver for emergency signals 
 
 To make location tracking more accurate and save phone battery without adding extra parts to the shoe, the smartphone app uses a simple AI control feature:
 \begin{itemize}[label=--]
-    \item Smart GPS Updates: Using the phone's built-in motion sensors and Bluetooth Low Energy (BLE) connection, the AI checks if the user is standing still or moving. It updates the GPS less often when the user is resting to save battery, and checks more often when the user is walking, running, or in an emergency.
-    \item Fixing GPS Errors: The AI removes wrong or jumpy GPS signals in crowded cities or semi-indoor areas, giving a smoother and more accurate location.
+    \item \textbf{Smart GPS Updates:} Using the phone's built-in motion sensors and Bluetooth Low Energy (BLE) connection, the AI checks if the user is standing still or moving. It updates the GPS less often when the user is resting to save battery, and checks more often when the user is walking, running, or in an emergency.
+    \item \textbf{Fixing GPS Errors:} The AI removes wrong or jumpy GPS signals in crowded cities or semi-indoor areas, giving a smoother and more accurate location.
 \end{itemize}
 
 \section{Components of the Lighting and Signaling System}

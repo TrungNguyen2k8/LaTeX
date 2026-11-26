@@ -3,7 +3,6 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[fontsize=13pt]{fontsize}
-% \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
 \usepackage{csquotes}
@@ -19,11 +18,33 @@
 \usepackage{float}
 \usepackage{microtype}
 \usepackage{setspace}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
 \setstretch{1.15}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
 \usetikzlibrary{calc}
 \geometry{left=1in, right=1in, top=1in, bottom=1in}
 \definecolor{borderblue}{HTML}{030391}
+\newlist{tabitem}{itemize}{1}
+\setlist[tabitem]{label=--, nosep, leftmargin=*, before=\vspace{-0.6\baselineskip}, after=\vspace{0\baselineskip}}
+\setlength{\headheight}{28pt}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+
+\fancypagestyle{mainstyle}{
+    \fancyhf{}
+    
+    \fancyhead[L]{\includegraphics[height=0.8cm]{figures/BK_logo.png}}
+    \fancyhead[R]{\small\textit{\leftmark}}
+    
+    \fancyfoot[L]{\small CC03 | Group 01}
+    \fancyfoot[R]{\small \thepage}
+    
+    % Đường kẻ ngang mảnh ngăn cách Header và Footer
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+}
 
 \addbibresource{references/references.bib}
 
@@ -53,18 +74,19 @@
         \includegraphics[width=10cm]{figures/BK_logo.png}
     \end{center}
 
-    \textbf{\LARGE{E-ShoeS}\\[4pt]}
+    \textbf{\LARGE{E-ShoeS}\\[6pt]}
     A Multifunctional Smart Footwear System\\
     for Energy Harvesting, and Rescue\\
 
     \vspace{2cm}
-    \textbf{GROUP 1}\\[1.5pt]
+    \textbf{GROUP 01}
+    \vspace{0.4cm}
     \begin{center}
         \begin{tabular}{c l l}
             \textbf{No.} & \textbf{StuID} & \textbf{Full Name} \\
             1 & 2650132 & Vo Ngoc Trung Nguyen \\
             2 & 2650072 & Tran Thi Thanh Huyen \\
-            3 & 2650036 & Luu Trach Đong \\
+            3 & 2650036 & Luu Trach Dong \\
             4 & 2610134 & Duong Ngoc Nhan \\
             5 & 2610115 & Nguyen Duc Minh \\
         \end{tabular}
@@ -77,12 +99,62 @@
 
 \pagenumbering{roman}
 \setcounter{page}{1}
+
+% --- Task Allocation ---
+\chapter*{Task Allocation}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{
+        c
+        l
+        >{\hsize=0.75\hsize\raggedright\arraybackslash}X
+        l
+        >{\hsize=1.25\hsize\raggedright\arraybackslash}X
+    }
+        \toprule
+        \textbf{No.} & \textbf{Student ID} & \textbf{Full Name} & \textbf{Role} & \textbf{Assigned Tasks} \\
+        \midrule
+        1 & 2650132 & Vo Ngoc Trung Nguyen & Leader & 
+            \begin{tabitem}[label=--]
+                \item Write Introduction \& Conclusion
+                \item Synthetic, write LaTeX
+            \end{tabitem} \\
+        \addlinespace
+        2 & 2650072 & Tran Thi Thanh Huyen & Member &
+            \begin{tabitem}[label=--]
+                \item Write Chapter 2 \& 3
+                \item Re-check works
+            \end{tabitem} \\
+        \addlinespace
+        3 & 2650036 & Luu Trach Dong & Member & 
+            \begin{tabitem}[label=--]
+                \item Write Chapter 2 \& 3
+                \item Re-check works
+            \end{tabitem} \\
+        \addlinespace
+        4 & 2610134 & Duong Ngoc Nhan & Member & 
+            \begin{tabitem}[label=--]
+                \item Write Chapter 4 \& 5
+                \item Give feedbacks
+            \end{tabitem}\\
+        \addlinespace
+        5 & 2610115 & Nguyen Duc Minh & Member & 
+            \begin{tabitem}[label=--]
+                \item Write Chapter 4 \& 5
+                \item Give feedbacks
+            \end{tabitem} \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+% --- Table of Contents ---
 \tableofcontents
 \newpage
 
 % --- Main part ---
 \pagenumbering{arabic}
 \setcounter{page}{1}
+\pagestyle{mainstyle}
 \input{chapters/01-intro}
 \input{chapters/02-materials}
 \input{chapters/03-methodology}
@@ -92,6 +164,6 @@
 
 % --- References ---
 \newpage
-\printbibliography[title={References}]
+\printbibliography[heading=bibintoc, title={References}]
 
 \end{document}

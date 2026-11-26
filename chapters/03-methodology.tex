@@ -11,21 +11,21 @@ The 3.7~V Li-Po battery connects to the TPS63031 DC-DC Voltage Regulator, which 
 \section{SOS System Architecture and Workflow}
 The SOS system operates in four steps, connecting the shoe's physical button to a smartphone app via Bluetooth Low Energy (BLE):
 \begin{itemize}[label=--]
-    \item Button Trigger \& False-Alarm Prevention (Button  Microcontroller): The push-button on the shoe connects to the MDBT42Q-512KV2 module. To let one button control both lights and emergencies without accidental triggers while walking, the code uses a press-and-hold timer: short presses switch light modes, while holding the button for 2--3 seconds activates the SOS alert.
-    \item Signal Processing \& Wireless Transmission (MDBT42Q-512KV2  Smartphone): Powered by the main battery, the nRF52832 chip inside the MDBT42Q-512KV2 module processes the long press and sends an emergency signal to the phone over 2.4~GHz BLE\@. Letting the phone handle GPS and Internet tasks keeps the shoe circuit small and saves battery.
-    \item AI-Controlled GPS Tracking \& Sending Alerts (BLE → AI Feature → GPS → Contacts): On the smartphone, the AI feature controls the built-in GPS slowing down GPS updates when the user is still to save battery and removing bad GPS signals. When the app receives an SOS signal via BLE, the AI immediately turns on high-accuracy GPS, finds the user's live location, and sends an emergency message to saved contacts over the Internet while the shoe flashes red SOS lights.
-    \item System Testing: the SOS workflow was tested to make sure the whole process works smoothly in daily use. Holding the button for 2--3 seconds successfully prevents accidental alarms while the user is running or jumping. Once the alert is triggered, the BLE signal reliably reaches the smartphone at normal walking distances. At the same time, the AI-controlled GPS accurately tracks the user's live location while saving battery, allowing the app to send out the emergency message quickly.
+    \item \textbf{Button Trigger \& False-Alarm Prevention:} The push-button on the shoe connects to the MDBT42Q-512KV2 module. To let one button control both lights and emergencies without accidental triggers while walking, the code uses a press-and-hold timer: short presses switch light modes, while holding the button for 2--3 seconds activates the SOS alert.
+    \item \textbf{Signal Processing \& Wireless Transmission:} Powered by the main battery, the nRF52832 chip inside the MDBT42Q-512KV2 module processes the long press and sends an emergency signal to the phone over 2.4~GHz BLE\@. Letting the phone handle GPS and Internet tasks keeps the shoe circuit small and saves battery.
+    \item \textbf{AI-Controlled GPS Tracking \& Sending Alerts:} On the smartphone, the AI feature controls the built-in GPS slowing down GPS updates when the user is still to save battery and removing bad GPS signals. When the app receives an SOS signal via BLE, the AI immediately turns on high-accuracy GPS, finds the user's live location, and sends an emergency message to saved contacts over the Internet while the shoe flashes red SOS lights.
+    \item \textbf{System Testing:} The SOS workflow was tested to make sure the whole process works smoothly in daily use. Holding the button for 2--3 seconds successfully prevents accidental alarms while the user is running or jumping. Once the alert is triggered, the BLE signal reliably reaches the smartphone at normal walking distances. At the same time, the AI-controlled GPS accurately tracks the user's live location while saving battery, allowing the app to send out the emergency message quickly.
 \end{itemize}
 
 \section{Lighting and Signaling System Methodology}
 The lighting system was made in four steps: connecting the wires, waterproofing the parts on the shoe, coding the light modes, and testing how it works.
 
 \subsection{Circuit Assembly and Power Connections}
-Front LED Light: Two white SMD 5730 LEDs connect to the 3.3~V power line through a 15~$\Omega$ protective resistor. A 2N2222 transistor acts as an electronic switch, with a 1~k$\Omega$ resistor protecting the Seeed Studio XIAO ESP32-C3 pin (keeping pin current under 3~mA).
-
-RGB LED Strip: The 10-LED WS2812B strip connects directly to the 3.7~V (4000~mAh) LiPo battery so it gets enough power without overloading the 3.3~V regulator. A 330~$\Omega$ resistor on the data wire keeps the signal clean and protects the first LED\@.
-
-Control Button: The IP67 waterproof button connects between a microcontroller input pin and ground (GND), using the chip's built-in pull-up resistor (INPUT\_PULLUP) to save space and parts.
+\begin{itemize}[label=--]
+    \item \textbf{Front LED Light:} Two white SMD 5730 LEDs connect to the 3.3~V power line through a 15~$\Omega$ protective resistor. A 2N2222 transistor acts as an electronic switch, with a 1~k$\Omega$ resistor protecting the Seeed Studio XIAO ESP32-C3 pin (keeping pin current under 3~mA).
+    \item \textbf{RGB LED Strip:} The 10-LED WS2812B strip connects directly to the 3.7~V (4000~mAh) LiPo battery so it gets enough power without overloading the 3.3~V regulator. A 330~$\Omega$ resistor on the data wire keeps the signal clean and protects the first LED\@.
+    \item \textbf{Control Button:} The IP67 waterproof button connects between a microcontroller input pin and ground (GND), using the chip's built-in pull-up resistor (INPUT\_PULLUP) to save space and parts.
+\end{itemize}
 
 \subsection{Waterproof Mounting}
 The front LEDs sit behind a clear plastic (polycarbonate) cover at the toe cap and are sealed with waterproof silicone glue.
@@ -39,10 +39,10 @@ All wires run through hidden channels into the arch box, with every solder joint
 \subsection{Software Control and Lighting Modes}
 Normal Operation (Short Press \-- under 1.5~s): Each short press moves through four battery-saving modes in order:
 \begin{itemize}[label=--]
-    \item Mode 0 (Off / Standby): All lights are off; the microcontroller enters low-power sleep mode to save energy.
-    \item Mode 1 (Front Light): The front white LEDs turn on at full brightness ($\sim$60~mA) to light the path ahead.
-    \item Mode 2 (360-Degree Visibility): The front LEDs stay on while the WS2812B strip glows softly in cyan/white (30\% brightness) so people can see the wearer from every angle.
-    \item Mode 3 (Night-Running Flash): The lights flash twice per second (2~Hz) to warn nearby vehicles while saving battery life.
+    \item \textbf{Mode 0 (Off / Standby):} All lights are off; the microcontroller enters low-power sleep mode to save energy.
+    \item \textbf{Mode 1 (Front Light):} The front white LEDs turn on at full brightness ($\sim$60~mA) to light the path ahead.
+    \item \textbf{Mode 2 (360-Degree Visibility):} The front LEDs stay on while the WS2812B strip glows softly in cyan/white (30\% brightness) so people can see the wearer from every angle.
+    \item \textbf{Mode 3 (Night-Running Flash):} The lights flash twice per second (2~Hz) to warn nearby vehicles while saving battery life.
 \end{itemize}
 
 Emergency SOS Mode (Long Press or SOS Alert): Holding the button for 3 seconds or longer, or receiving an automatic signal from the SOS module \-- immediately overrides all normal modes. The front LEDs flash quickly while the WS2812B strip flashes a bright red Morse code SOS signal at full power, synced with the wireless phone alert.
