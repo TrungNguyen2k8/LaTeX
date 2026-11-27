@@ -1,2 +1,2 @@
-Author: Group 1
+Author: Team 1
 All rights reserved
