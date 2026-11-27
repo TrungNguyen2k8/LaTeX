@@ -21,6 +21,7 @@
 \usepackage{parskip}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+\usepackage{newtxtext, newtxmath}
 
 \setstretch{1.15}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -38,7 +39,7 @@
     \fancyhead[L]{\includegraphics[height=0.8cm]{figures/BK_logo.png}}
     \fancyhead[R]{\small\textit{\leftmark}}
     
-    \fancyfoot[L]{\small CC03 | Group 01}
+    \fancyfoot[L]{\small CC03 | Team 1}
     \fancyfoot[R]{\small \thepage}
     
     % Đường kẻ ngang mảnh ngăn cách Header và Footer
@@ -65,7 +66,7 @@
     \end{tikzpicture}
 
     \centering
-    \textbf{VIET NAM NATIONAL UNIVERSITY}\\[1.15pt]
+    \textbf{VIET NAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\[1.15pt]
     \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}\\[1.15pt]
     \textbf{OFFICE OF INTERNATIONAL STUDY PROGRAMS}\\[1.15pt]
     ------*------\\
@@ -79,7 +80,7 @@
     for Energy Harvesting, and Rescue\\
 
     \vspace{2cm}
-    \textbf{GROUP 01}
+    \textbf{TEAM 1}
     \vspace{0.4cm}
     \begin{center}
         \begin{tabular}{c l l}
@@ -164,6 +165,8 @@
 
 % --- References ---
 \newpage
-\printbibliography[heading=bibintoc, title={References}]
+\begingroup
+\raggedright\printbibliography[heading=bibintoc, title={References}]
+\endgroup
 
 \end{document}
