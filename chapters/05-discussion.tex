@@ -1,53 +1,32 @@
-\chapter{Discussion}
-\section{Overall Shortcomings}
-\subsection{Walking for Long Periods}\label{sec:WLP}
-The first drawback is the weight of the footwear when fully equipped. With the main battery, energy harvesting components, and protective housing installed, the total mass reaches 700–900 grams, which can lead to leg fatigue during prolonged use. This is a significant disadvantage, especially given that E-ShoeS are intended for daily walking and running, where the substantial added weight makes extended movement more tiring.
+\chapter{DISCUSSION}
+\section{Overall Shortcomings} %5.1
+\subsection{Walking for Long Periods}\label{sec:WLP} %5.1.1
+The first drawback is the weight of the fully equipped footwear. With the main battery, energy harvesters, and protective housing installed, the total mass reaches 700--900 grams, which can cause leg fatigue during prolonged use. Because E-ShoeS is intended for daily walking and running, this added weight creates a clear trade-off: while the shoe offers versatile smart features, it can become uncomfortable over long periods.
 
 The physical design incorporates a high-capacity battery and integrated electronic hardware, meaning the footprint of the footwear is larger than its name might suggest. While these components are essential for the intended functions, their total weight forces the user to make a trade-off. The product may offer versatile smart features, but it can become uncomfortable to wear over long periods.
 
-\subsection{High Production Costs and Limited Accessibility}\label{sec:HPCLA}
-The second drawback is cost. Materials such as carbon or titanium drive up expenses thereby limiting accessibility for the broader consumer base. This drawback reflects a tension between technical ambition and market scalability. While certain materials may be essential to realizing a product exactly as envisioned, their high cost inevitably limits the number of people who can access it. Nevertheless, this is an issue that warrants careful consideration. 
+\subsection{High Production Costs and Limited Accessibility}\label{sec:HPCLA} %5.1.2
+The second drawback is high production cost. Materials such as carbon fiber and titanium significantly increase expenses, limiting accessibility for the broader consumer market. This highlights a clear tension between technical ambition and market scalability that requires careful consideration.
 
-\section{Technical Limitations}
-\subsection{Mechanical Fatigue of PZT Energy Harvesters}\label{sec:MFPEH}
-The setup incorporates GZT-5H piezoelectric material beneath the heel and the forefoot to harvest energy from the forces generated during walking. While these locations are effective for energy collection, prolonged use can negatively impact the functionality of the materials as continuous application of force is detrimental to them. Therefore, the challenge with PZT lies not only in generating the initial electrical response but also in maintaining it continuously and without error. Achieving both simultaneously is extremely difficult. For EShoeS, this inconvenience would create a feeling of insecurity for the wearer.
+\section{Technical Limitations} %5.2
+\subsection{Mechanical Fatigue of PVDF Energy Harvesters}\label{sec:MFPEH} %5.2.1
+The design places PolyK PVDF piezoelectric film beneath the heel and forefoot to harvest walking energy. Although these positions are effective, continuous mechanical stress degrades the material over time. Maintaining a reliable electrical output under repeated loading is therefore challenging, and any performance drop could reduce user confidence in E-ShoeS.
 
-\subsection{Environmental Hazards and Battery Protection}\label{sec:EHBP}
-Because kinetic energy harvesting relies solely on movement, outdoor weather conditions like rain or mud can impact exterior shoe parts, requiring protective waterproofing for internal sensors and wiring.
+\subsection{Battery Impact, Overheating, and Environmental Hazards}\label{sec:RBIO} %5.2.2
+The energy storage system uses a 3.7~V, 4000~mAh Li-Po battery to supply continuous power to the lighting and electronic components inside a compact sole. Because Li-Po cells are vulnerable to severe mechanical impacts and excessive heat, both of which can cause thermal runaway, fire, or explosion, the battery placement and housing must be carefully engineered to absorb physical shocks and dissipate heat effectively. In addition, since the footwear is intended for outdoor use, exposure to rain, mud, and moisture poses a serious risk of damaging the battery, internal sensors, and wiring if the enclosure is not properly sealed.
 
-\subsection{Risk of Battery Impact and Overheating}\label{sec:RBIO}
-The energy storage system utilizes a 3.7 V, 4000 mAh Li-Po battery. Because this high-capacity battery supplies continuous power to the lighting and electronic subsystems inside a compact sole, an additional protection system is needed within the battery compartment.
+\subsection{Fatigue of LED Circuitry During Sole Bending}\label{sec:FLCDSB} %5.2.3
+The RGB LED strip encircling the sole is vulnerable to repeated bending during vigorous movement or sudden direction changes, creating a risk of circuit breakage. If the strip fails to maintain its structural integrity while running, it degrades both the visual appearance of E-ShoeS and its ability to provide reliable night-time safety.
 
-According to technical specifications, severe impacts or exposure to excessive heat can lead to fire or explosion. Therefore, the placement of the battery integrated into the footwear must be carefully considered to minimize the risk of physical impact and to ensure that heat can be effectively dissipated if the battery is subjected to a significant external heat source.
+\section{Proposed Engineering Solutions} %5.3
+\subsection{Composite Reinforcement for the PVDF} %5.3.1
+To address the fatigue risk in Section~\ref{sec:MFPEH}, the proposed PVDF-based design will be reinforced with a soft composite layer. This upgrade helps the energy harvester withstand repetitive mechanical impacts while preserving its piezoelectric output, targeting over 5 million compression cycles without performance loss.
 
-\subsection{Fatigue of LED Circuitry During Sole Bending}\label{sec:FLCDSB}
-The soles of the shoes are encircled by RGB LED strips. Placing the circuitry here makes it susceptible to bending during vigorous movement or sudden changes in direction, which creates a risk of the circuit breaking. While these light strips may look great when the wearer is standing still, they fail to perform effectively during movement.
+\subsection{Impact, Thermal, and Waterproof Protection} %5.3.2
+To address the limitations in Section~\ref{sec:RBIO}, the battery will be housed in a carbon-Kevlar shell combined with a thermally conductive adhesive and an Aerogel insulation layer. The shell protects the battery from physical impacts, while the thermal adhesive dissipates internal heat and the Aerogel layer acts as a barrier against external heat sources. Although this design cannot completely eliminate thermal runaway risks, it significantly improves safety and lifespan. Additionally, waterproof gaskets and silicone adhesive will seal the compartment against rain and mud.
 
-This detail also has implications for the visual presentation of the EShoeS. If the circuitry cannot maintain its intended shape during vigorous movement, its integrated lighting function can no longer reliably ensure safety.
+\subsection{Flexible Printed Circuit Design for the RGB LED Strip} %5.3.3
+To address the bending fatigue in Section~\ref{sec:FLCDSB}, the RGB LED strip will use a flexible printed circuit made of rolled copper with zigzag-shaped conductive traces. Combining flexible substrates with serpentine trace geometry allows the circuit to adapt smoothly to repeated sole bending, making the durability target of over 1 million bending cycles more attainable.
 
-\section{Proposed Engineering Solutions}
-\subsection{Composite reinforcement for the PZT}
-To address the risk mentioned in Section~\ref{sec:MFPEH}, the proposed base on PZT-5H design will be reinforced with a soft composite, primarily to enable the energy harvester to withstand repetitive mechanical impact while maintaining its piezoelectric functionality.
-
-This upgrade is intended to ensure the PZT assembly operates more smoothly over successive cycles, with the proposal specifying that it must withstand over 5 million compression cycles without compromising other functions.
-
-\subsection{Mechanical and thermal protection for batteries}
-As the limitations mentioned in Section~\ref{sec:RBIO}, the solution is utilizing a carbon shell made of Kevlar fibers combined with a thermally conductive adhesive and an Aerogel insulation layer. The casing serves to protect the battery from physical impact, while other materials perform thermal functions.
-
-Thermal interface material and thermal insulation film serve two completely opposite functions: the former is used to facilitate heat transfer within an assembly while Aerogel insulation film acts as a thermal barrier.
-
-Addressing this weakness significantly extends the lifespan of the footwear and enhances the user experience. However, this approach does not entirely eliminate the risk of fire or explosion.
-
-\subsection{Flexible Printed Circuit Design for the RGB LED Strip}
-To address the challenges encountered in Section~\ref{sec:FLCDSB}, the proposed solution involves using a flexible printed circuit made of rolled copper, incorporating zigzag-shaped conductive traces. This modification is better suited for repetitive movements.
-
-Changing both the materials and the design of the conductive paths are two closely complementary tasks. Flexible circuits tend to adapt well to bends while zigzag-patterned paths are used to accommodate specific operational requirements.
-
-The plan is to achieve over 1 million bending cycles. This is a durability target specifically for the circuit. Therefore, this change could make that goal more attainable.
-
-\subsection{Commercial Product Segmentation}
-In Section~\ref{sec:HPCLA}, cost also presents a significant challenge. The proposed solution is to divide the product line into two distinct segments “basic” and “sport.” The basic segment will utilize standard composite materials while the sport segment will incorporate high-end materials such as carbon fiber, titanium and others.
-
-This proposal offers buyers a wider range of options, ensuring they do not have to commit a large sum of money to a product that may not suit their needs. At the same time, it allows those who are interested to purchase high-end products to experience them.
-
-It is expected that there will be a significant price gap between the two segments, allowing users who opt for the basic version to save on costs and reduce their financial burden.
+\subsection{Commercial Product Segmentation} %5.3.4
+To address the cost challenge in Section~\ref{sec:HPCLA}, the product line will be divided into two distinct segments: ``Basic'' and ``Sport''. The Basic version will use standard composite materials to keep prices affordable for everyday users, while the Sport version will incorporate high-end materials like carbon fiber and titanium for customers seeking maximum performance. This segmentation broadens market accessibility without compromising the flagship design.

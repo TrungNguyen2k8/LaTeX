@@ -1,5 +1,6 @@
 \RequirePackage{fix-cm}
 \documentclass[a4paper]{report}
+\usepackage{tocloft}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[fontsize=13pt]{fontsize}
@@ -22,6 +23,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{newtxtext, newtxmath}
+\usepackage[raggedright]{titlesec}
+\usepackage{caption}
 
 \setstretch{1.15}
 \newcolumntype{L}{>{\raggedright\arraybackslash}X}
@@ -32,6 +35,11 @@
 \setlist[tabitem]{label=--, nosep, leftmargin=*, before=\vspace{-0.6\baselineskip}, after=\vspace{0\baselineskip}}
 \setlength{\headheight}{28pt}
 \renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+\renewcommand{\cftsecfont}{\bfseries}
+\setlength{\cftbeforesecskip}{4pt}
+\renewcommand{\cftdotsep}{4}
+\DeclareCaptionFont{size105}{\fontsize{10.5}{12}\selectfont}
+\captionsetup{font=size105}
 
 \fancypagestyle{mainstyle}{
     \fancyhf{}
@@ -123,30 +131,31 @@
         \addlinespace
         2 & 2650072 & Tran Thi Thanh Huyen & Member &
             \begin{tabitem}[label=--]
-                \item Write Chapter 2 \& 3
+                \item Write Chapter 2
                 \item Re-check works
             \end{tabitem} \\
         \addlinespace
         3 & 2650036 & Luu Trach Dong & Member & 
             \begin{tabitem}[label=--]
-                \item Write Chapter 2 \& 3
+                \item Write Chapter 3
                 \item Re-check works
             \end{tabitem} \\
         \addlinespace
         4 & 2610134 & Duong Ngoc Nhan & Member & 
             \begin{tabitem}[label=--]
-                \item Write Chapter 4 \& 5
+                \item Write Chapter 4
                 \item Give feedbacks
             \end{tabitem}\\
         \addlinespace
         5 & 2610115 & Nguyen Duc Minh & Member & 
             \begin{tabitem}[label=--]
-                \item Write Chapter 4 \& 5
+                \item Write Chapter 5
                 \item Give feedbacks
             \end{tabitem} \\
         \bottomrule
     \end{tabularx}
 \end{table}
+\newpage
 
 % --- Table of Contents ---
 \tableofcontents
@@ -166,7 +175,7 @@
 % --- References ---
 \newpage
 \begingroup
-\raggedright\printbibliography[heading=bibintoc, title={References}]
+\raggedright\printbibliography[heading=bibintoc, title={REFERENCES}]
 \endgroup
 
 \end{document}
