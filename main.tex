@@ -61,53 +61,15 @@
 
 % --- First Page ---
 \begin{titlepage}
-    \begin{tikzpicture}[remember picture, overlay]
-        \draw[line width=1pt, color=borderblue] 
-            ([xshift=1.5cm, yshift=-1.5cm]current page.north west) 
-            rectangle 
-            ([xshift=-1.5cm, yshift=1.5cm]current page.south east);
-            
-        \draw[line width=3pt, color=borderblue] 
-            ([xshift=1.65cm, yshift=-1.65cm]current page.north west) 
-            rectangle 
-            ([xshift=-1.65cm, yshift=1.65cm]current page.south east);
-    \end{tikzpicture}
-
-    \centering
-    \textbf{VIETNAM NATIONAL UNIVERSITY HO CHI MINH CITY}\\[1.15pt]
-    \textbf{HO CHI MINH CITY UNIVERSITY OF TECHNOLOGY}\\[1.15pt]
-    \textbf{OFFICE OF INTERNATIONAL STUDY PROGRAMS}\\[1.15pt]
-    ------*------\\
-
-    \begin{center}
-        \includegraphics[width=10cm]{figures/BK_logo.png}
-    \end{center}
-
-    \textbf{\LARGE{E-ShoeS}\\[6pt]}
-    A Multifunctional Smart Footwear System\\
-    for Energy Harvesting, and Rescue\\
-
-    \vspace{2cm}
-    \textbf{TEAM 1}
-    \vspace{0.4cm}
-    \begin{center}
-        \begin{tabular}{c l l}
-            \textbf{No.} & \textbf{StuID} & \textbf{Full Name} \\
-            1 & 2650132 & Vo Ngoc Trung Nguyen \\
-            2 & 2650072 & Tran Thi Thanh Huyen \\
-            3 & 2650036 & Luu Trach Dong \\
-            4 & 2650134 & Duong Ngoc Nhan \\
-            5 & 2650114 & Nguyen Duc Minh \\
-        \end{tabular}
-    \end{center}
-
-    \vfill
-    \textbf{Ho Chi Minh City, November 2026}
-    
+    \input{chapters/00-cover}
 \end{titlepage}
 
 \pagenumbering{roman}
 \setcounter{page}{1}
+
+% --- Table of Contents ---
+\tableofcontents
+\newpage
 
 % --- Task Allocation ---
 \chapter*{Task Allocation}
@@ -156,10 +118,6 @@
         \bottomrule
     \end{tabularx}
 \end{table}
-\newpage
-
-% --- Table of Contents ---
-\tableofcontents
 \newpage
 
 % --- Main part ---

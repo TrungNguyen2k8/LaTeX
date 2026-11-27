@@ -23,7 +23,7 @@ The lighting system was made in four steps: connecting the wires, waterproofing 
 \subsection{Circuit Assembly and Power Connections} %3.3.1
 \begin{itemize}[label=--]
     \item \textbf{Front LED Light:} Two white SMD 5730 LEDs connect to the 3.3~V power line through a 15~$\Omega$ protective resistor. A 2N2222 transistor acts as an electronic switch, with a 1~k$\Omega$ resistor protecting the Seeed Studio XIAO ESP32-C3 pin (keeping pin current under 3~mA).
-    \item \textbf{RGB LED Strip:} The 10-LED WS2812B strip connects directly to the 3.7~V (4000~mAh) LiPo battery so it gets enough power without overloading the 3.3~V regulator. A 330~$\Omega$ resistor on the data wire keeps the signal clean and protects the first LED\@.
+    \item \textbf{RGB LED Strip:} The 10-LED WS2812B strip connects directly to the 3.7~V (4000~mAh) Li-Po battery so it gets enough power without overloading the 3.3~V regulator. A 330~$\Omega$ resistor on the data wire keeps the signal clean and protects the first LED\@.
     \item \textbf{Control Button:} The IP67 waterproof button connects between a microcontroller input pin and ground (GND), using the chip's built-in pull-up resistor (INPUT\_PULLUP) to save space and parts.
 \end{itemize}
 
